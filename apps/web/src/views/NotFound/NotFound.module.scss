@@ -1,0 +1,40 @@
+.wrapper {
+  @include page-wrapper;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 60px 0;
+    text-align: center;
+  }
+
+  .title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 150px;
+    line-height: 120%;
+    font-family: var(--font-secondary);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  @include tablet {
+    .content {
+      padding: 130px 0;
+    }
+
+    .title {
+      font-size: 200px;
+      letter-spacing: 2px;
+    }
+  }
+
+  @include laptop {
+  }
+
+  @include desktop {
+  }
+}

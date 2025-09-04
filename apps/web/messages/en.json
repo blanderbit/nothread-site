@@ -1,0 +1,14 @@
+{
+  "home": {
+    "test": "Static test translations EN"
+  },
+  "common": {
+    "all": "All",
+    "copied": "Copied",
+    "go_back": "Back",
+    "shared_text": "Share the news:",
+    "news_not_found": "News not found",
+    "pade_not_found": "Page not found",
+    "to_main_page": "To the main page"
+  }
+}

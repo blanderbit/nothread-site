@@ -1,0 +1,48 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  .AccordionTrigger {
+    @include reset-btn;
+    display: flex;
+    align-items: center;
+  }
+
+  .AccordionContent {
+    overflow: hidden;
+  }
+
+  @include tablet {
+  }
+
+  @include laptop {
+  }
+
+  @include desktop {
+  }
+}
+
+.AccordionContent[data-state='open'] {
+  animation: slideDown 300ms linear;
+}
+.AccordionContent[data-state='closed'] {
+  animation: slideUp 150ms linear;
+}
+
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}

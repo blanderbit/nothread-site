@@ -1,0 +1,17 @@
+.wrap {
+  padding: 0 12px;
+  width: 100%;
+
+  @include tablet {
+    padding: 0 30px;
+  }
+
+  @include laptop {
+    margin: 0 auto;
+    max-width: 1440px;
+  }
+
+  @include desktop {
+    max-width: 1900px;
+  }
+}

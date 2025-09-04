@@ -1,0 +1,180 @@
+@mixin tablet {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin maxTablet {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin onlyTablet {
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin maxLaptop {
+  @media (max-width: 1279px) {
+    @content;
+  }
+}
+
+@mixin onlyLaptop {
+  @media screen and (min-width: 1280px) and (max-width: 1749px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1750px) {
+    @content;
+  }
+}
+
+@mixin maxDesktop {
+  @media (max-width: 1749px) {
+    @content;
+  }
+}
+
+@mixin horizont-scrollbar {
+  &::-webkit-scrollbar {
+    border-radius: 2.5px;
+    background-color: var(--color-grey);
+    height: 3px;
+    overflow: hidden;
+  }
+  &::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    border-radius: 2.5px;
+    background: var(--color-red);
+  }
+}
+
+@mixin vertical-scrollbar {
+  &::-webkit-scrollbar {
+    border-radius: 2.5px;
+    background-color: transparent;
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    border-radius: 2.5px;
+    background: var(--color-red);
+    width: 5px;
+  }
+}
+
+@mixin reset-btn {
+  outline: none;
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: var(--font-primary);
+}
+
+@mixin text-clamp($lines) {
+  -webkit-line-clamp: $lines;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
+
+@mixin hover-white {
+  transition: color 0.3s;
+
+  &:hover {
+    color: var(--color-white);
+  }
+}
+
+@mixin hover-red {
+  transition: color 0.3s;
+
+  &:hover {
+    color: var(--color-red);
+  }
+}
+
+@mixin page-wrapper {
+  padding-top: 110px;
+
+  @include tablet {
+    padding-top: 160px;
+  }
+
+  @include laptop {
+    padding-top: 230px;
+  }
+
+  @include desktop() {
+    padding-top: 220px;
+  }
+}
+
+@mixin line-support($bg) {
+  position: relative;
+  &::before {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    background-color: $bg;
+    width: 100%;
+    height: 20px;
+    pointer-events: none;
+    content: '';
+  }
+}
+
+@mixin richtext {
+  p {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin-bottom: 20px;
+  }
+
+  ul {
+    margin: 30px 0;
+    padding-left: 20px;
+
+    li {
+      list-style: disc;
+    }
+
+    li:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+
+  ol {
+    margin: 30px 0;
+    padding-left: 20px;
+
+    li {
+      list-style: decimal;
+    }
+
+    li:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+}

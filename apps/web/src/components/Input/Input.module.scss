@@ -1,0 +1,127 @@
+.wrapper.wrapper {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 26px;
+
+  .input.input {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid var(--white);
+    background-color: transparent;
+    padding-bottom: 7px;
+    width: 100%;
+    color: var(--white_60);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    font-family: var(--font-primary);
+    text-align: center;
+
+    &:autofill,
+    &:-webkit-autofill {
+      -webkit-text-fill-color: var(--white_60) !important;
+      -webkit-box-shadow: 0 0 0 100px var(--black) inset !important;
+    }
+
+    &:focus,
+    &.hasValue {
+      & + .label {
+        transform: translateY(-25px);
+        color: var(--white_60);
+        font-size: 11px;
+      }
+    }
+
+    &::placeholder {
+      opacity: 1;
+      transition: 0.25s;
+    }
+
+    &:disabled {
+      background-color: var(--color-background-disabled);
+    }
+
+    &:focus {
+      &::placeholder {
+        opacity: 0;
+      }
+    }
+
+    @include tablet {
+    }
+
+    @include laptop {
+      transition: border-color 0.3s;
+
+      &:hover {
+        border-color: var(--white);
+      }
+    }
+
+    @include desktop {
+      padding-bottom: 10px;
+      font-size: 20px;
+    }
+  }
+
+  textarea.input.input {
+    &:focus,
+    &.hasValue {
+      & + .label {
+        transform: translateY(-40px);
+        font-size: 11px;
+      }
+    }
+  }
+
+  &.isError.isError {
+    .input {
+      border-color: var(--color-error);
+    }
+  }
+
+  .label {
+    position: absolute;
+    // left: 50%;
+    transition: 0.25s;
+    will-change: transform;
+    pointer-events: none;
+    color: var(--white_60);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+  }
+
+  @include desktop {
+    height: 34px;
+
+    .label {
+      font-size: 20px;
+    }
+  }
+}
+
+.errorMessage {
+  position: absolute;
+  bottom: -18px;
+  margin: 0;
+  padding: 0;
+  color: var(--color-error);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 150%;
+}
+
+.requiredAsterisk {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  color: var(--color-error);
+}

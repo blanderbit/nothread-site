@@ -1,0 +1,79 @@
+.wrapper {
+  @include reset-btn;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid transparent;
+  border-radius: 100000px;
+  padding-right: 10px;
+  padding-left: 10px;
+  width: fit-content;
+  height: 30px;
+  text-align: center;
+
+  &.fullWidth {
+    width: 100%;
+  }
+  &:disabled {
+    pointer-events: none;
+  }
+
+  &.red {
+    border-color: var(--milk, #fbf5e7);
+  }
+
+  &.white {
+    border-color: var(--milk, #fbf5e7);
+    background-color: #fff;
+
+    span {
+      transition: color 0.3s;
+    }
+
+    svg path {
+      transition: fill 0.3s;
+    }
+  }
+
+  @include tablet {
+    gap: 5px;
+  }
+
+  @include laptop {
+    transition:
+      background-color 0.3s,
+      color 0.3s,
+      border-color 0.3s;
+
+    &:hover {
+      &.white {
+        background-color: var(--color-red);
+        span {
+          color: var(--milk, #fbf5e7);
+        }
+        svg path {
+          fill: var(--milk, #fbf5e7);
+        }
+      }
+      &.redBorder {
+        background-color: var(--color-red);
+      }
+      &.darkGrey {
+        background-color: var(--color-red);
+      }
+      &.red {
+        background-color: var(--milk, #fbf5e7);
+        span {
+          color: var(--color-red);
+        }
+        svg path {
+          fill: var(--color-red);
+        }
+      }
+    }
+  }
+
+  @include desktop {
+  }
+}

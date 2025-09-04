@@ -1,0 +1,13 @@
+.wrapper {
+  @include tablet {
+
+  }
+
+  @include laptop {
+
+  }
+
+  @include desktop {
+
+  }
+}

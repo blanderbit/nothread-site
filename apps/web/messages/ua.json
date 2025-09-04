@@ -1,0 +1,14 @@
+{
+  "home": {
+    "test": "Static test translations UA"
+  },
+  "common": {
+    "all": "Всі",
+    "copied": "Скопійовано",
+    "go_back": "Назад",
+    "shared_text": "Поділитись новиною:",
+    "news_not_found": "Новин не знайдено",
+    "pade_not_found": "Сторінку не знайдено",
+    "to_main_page": "На головну сторінку"
+  }
+}
