@@ -9,6 +9,14 @@ import { IntroBlock } from './blocks/home/IntroBlock';
 import { revalidatePage } from './hooks/revalidatePage';
 
 import { HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
+import { GlobalTrustBlock } from './blocks/home/GlobalTrustBlock';
+import { PreventsAttacksBlock } from './blocks/home/PreventsAttacksBlock';
+import { QuotesBlock } from './blocks/home/QuotesBlock';
+import { TailoredProtectionBlock } from './blocks/home/TailoredProtectionBlock';
+import { SolutionBlock } from './blocks/home/SolutionBlock';
+import { WhyUsBlock } from './blocks/home/WhyUsBlock';
+import { ReadyUpgradeBlock } from './blocks/home/ReadyUpgradeBlock';
+import { ResourcesBlock } from './blocks/home/ResourcesBlock';
 
 export const Pages: CollectionConfig = {
   access: {
@@ -47,6 +55,10 @@ export const Pages: CollectionConfig = {
                       label: 'Main screen + blocks (main)',
                       value: 'home',
                     },
+                    // {
+                    //   label: 'Inner Product',
+                    //   value: 'inner-product',
+                    // },
                     {
                       label: 'A page with text (Privacy Policy)',
                       value: 'information',
@@ -83,7 +95,17 @@ export const Pages: CollectionConfig = {
               admin: {
                 condition: (data) => data.viewType === 'home',
               },
-              blocks: [IntroBlock],
+              blocks: [
+                IntroBlock,
+                GlobalTrustBlock,
+                PreventsAttacksBlock,
+                QuotesBlock,
+                TailoredProtectionBlock,
+                SolutionBlock,
+                WhyUsBlock,
+                ReadyUpgradeBlock,
+                ResourcesBlock,
+              ],
               label: 'Blocks',
               labels: {
                 plural: 'Blocks',
@@ -92,6 +114,19 @@ export const Pages: CollectionConfig = {
               name: 'homeBlocks',
               type: 'blocks',
             },
+            // {
+            //   admin: {
+            //     condition: (data) => data.viewType === 'inner-product',
+            //   },
+            //   blocks: [],
+            //   label: 'Blocks',
+            //   labels: {
+            //     plural: 'Blocks',
+            //     singular: 'Block',
+            //   },
+            //   name: 'innerProductBlocks',
+            //   type: 'blocks',
+            // },
             {
               admin: {
                 condition: (data) => data.viewType === 'information',

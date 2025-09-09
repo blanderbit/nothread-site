@@ -70,6 +70,8 @@ export interface Config {
     users: User;
     media: Media;
     pages: Page;
+    products: Product;
+    solutions: Solution;
     forms: Form;
     'form-submissions': FormSubmission;
     'payload-locked-documents': PayloadLockedDocument;
@@ -81,6 +83,8 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    products: ProductsSelect<false> | ProductsSelect<true>;
+    solutions: SolutionsSelect<false> | SolutionsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -93,12 +97,16 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    contacts: Contact;
+    banner: Banner;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    contacts: ContactsSelect<false> | ContactsSelect<true>;
+    banner: BannerSelect<false> | BannerSelect<true>;
   };
-  locale: 'en';
+  locale: 'ua' | 'en';
   user: User & {
     collection: 'users';
   };
@@ -191,7 +199,19 @@ export interface Page {
     };
     [k: string]: unknown;
   } | null;
-  homeBlocks?: IntroBlockFields[] | null;
+  homeBlocks?:
+    | (
+        | IntroBlockFields
+        | GlobalTrustBlockFields
+        | PreventsAttacksBlockFields
+        | QuotesBlockFields
+        | TailoredProtectionBlockFields
+        | SolutionsBlockFields
+        | WhyUsBlockFields
+        | ReadyUpgradeBlockFields
+        | ResourcesBlockFields
+      )[]
+    | null;
   privacyText?: {
     root: {
       type: string;
@@ -225,22 +245,111 @@ export interface Page {
  * via the `definition` "IntroBlockFields".
  */
 export interface IntroBlockFields {
-  description: string;
+  title: string;
+  /**
+   * To highlight in red highlight the desired part of the text and press 'B'
+   */
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   bgVideo: string | Media;
-  link: {
-    type?: ('reference' | 'custom' | 'form') | null;
-    newTab?: boolean | null;
-    label: string;
-    reference?: {
-      relationTo: 'pages';
-      value: string | Page;
-    } | null;
-    url?: string | null;
-    form?: (string | null) | Form;
-  };
+  advantagesList: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
   id?: string | null;
   blockName?: string | null;
   blockType: 'intro-home-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GlobalTrustBlockFields".
+ */
+export interface GlobalTrustBlockFields {
+  title: string;
+  firstStatistic: {
+    title: string;
+    numbers: string;
+    description: string;
+  };
+  statisticsList: {
+    icon: string | Media;
+    title: string;
+    numbers: string;
+    id?: string | null;
+  }[];
+  logoCompany: string | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'global-trust-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PreventsAttacksBlockFields".
+ */
+export interface PreventsAttacksBlockFields {
+  title: string;
+  image: string | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'prevents-attacks-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuotesBlockFields".
+ */
+export interface QuotesBlockFields {
+  title: string;
+  quotesList: {
+    quote: string;
+    author: string;
+    position: string;
+    logo: string | Media;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'quotes-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TailoredProtectionBlockFields".
+ */
+export interface TailoredProtectionBlockFields {
+  title: string;
+  advantagesList: {
+    title: string;
+    description: string;
+    image: string | Media;
+    link: {
+      type?: ('reference' | 'custom' | 'form') | null;
+      newTab?: boolean | null;
+      label: string;
+      reference?: {
+        relationTo: 'pages';
+        value: string | Page;
+      } | null;
+      url?: string | null;
+      form?: (string | null) | Form;
+    };
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'tailored-protection-block';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -329,6 +438,520 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SolutionsBlockFields".
+ */
+export interface SolutionsBlockFields {
+  title: string;
+  solutionsList: {
+    title: string;
+    description?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    image: string | Media;
+    link: {
+      type?: ('reference' | 'custom' | 'form') | null;
+      newTab?: boolean | null;
+      label: string;
+      reference?: {
+        relationTo: 'pages';
+        value: string | Page;
+      } | null;
+      url?: string | null;
+      form?: (string | null) | Form;
+    };
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'solutions-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyUsBlockFields".
+ */
+export interface WhyUsBlockFields {
+  title: string;
+  description: string;
+  statisticsList: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'why-us-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ReadyUpgradeBlockFields".
+ */
+export interface ReadyUpgradeBlockFields {
+  /**
+   * To highlight in red highlight the desired part of the text and press 'B'
+   */
+  title?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  description: string;
+  bgVideo: string | Media;
+  scheduleDemo: {
+    type?: ('reference' | 'custom' | 'form') | null;
+    newTab?: boolean | null;
+    label: string;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    form?: (string | null) | Form;
+  };
+  talkToExpert: {
+    type?: ('reference' | 'custom' | 'form') | null;
+    newTab?: boolean | null;
+    label: string;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    form?: (string | null) | Form;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ready-upgrade-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ResourcesBlockFields".
+ */
+export interface ResourcesBlockFields {
+  title: string;
+  resourcesList: {
+    icon: string | Media;
+    title: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'resources-home-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products".
+ */
+export interface Product {
+  id: string;
+  title: string;
+  productBlocks?:
+    | (
+        | IntroProductBlockFields
+        | TailoderProductBlockFields
+        | WhyUsProductBlockFields
+        | TrapProductBlockFields
+        | StatsProductBlockFields
+        | TakeStepProductBlockFields
+      )[]
+    | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    description?: string | null;
+  };
+  /**
+   * Генерується автоматично або відредагуйте вручну
+   */
+  publishedOn?: string | null;
+  thumbnail: string | Media;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IntroProductBlockFields".
+ */
+export interface IntroProductBlockFields {
+  title: string;
+  description: string;
+  bgVideo: string | Media;
+  advantagesList: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  link: {
+    type?: ('reference' | 'custom' | 'form') | null;
+    newTab?: boolean | null;
+    label: string;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    form?: (string | null) | Form;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'intro-product-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TailoderProductBlockFields".
+ */
+export interface TailoderProductBlockFields {
+  title: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image: string | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'tailoder-product-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyUsProductBlockFields".
+ */
+export interface WhyUsProductBlockFields {
+  title: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  advantagesList: {
+    icon: string | Media;
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  descriptionBanner: string;
+  bannerImg: string | Media;
+  link: {
+    type?: ('reference' | 'custom' | 'form') | null;
+    newTab?: boolean | null;
+    label: string;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    form?: (string | null) | Form;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'why-us-product-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TrapProductBlockFields".
+ */
+export interface TrapProductBlockFields {
+  title: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  advantagesList: {
+    icon: string | Media;
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  descriptionBanner?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  link: {
+    type?: ('reference' | 'custom' | 'form') | null;
+    newTab?: boolean | null;
+    label: string;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    form?: (string | null) | Form;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'trap-product-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsProductBlockFields".
+ */
+export interface StatsProductBlockFields {
+  title: string;
+  description: string;
+  bgImage: string | Media;
+  advantagesList: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'stats-product-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TakeStepProductBlockFields".
+ */
+export interface TakeStepProductBlockFields {
+  title: string;
+  description: string;
+  advantagesList: {
+    text: string;
+    icon: string | Media;
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'take-step-product-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "solutions".
+ */
+export interface Solution {
+  id: string;
+  title: string;
+  solutionBlocks?:
+    | (
+        | IntroSolutionBlockFields
+        | AttackSolutionBlockFields
+        | WebSolutionBlockFields
+        | TakeStepProductBlockFields
+        | HelpSolutionBlockFields
+        | ReadySolutionBlockFields
+      )[]
+    | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    description?: string | null;
+  };
+  /**
+   * Генерується автоматично або відредагуйте вручну
+   */
+  publishedOn?: string | null;
+  thumbnail: string | Media;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IntroSolutionBlockFields".
+ */
+export interface IntroSolutionBlockFields {
+  title: string;
+  description: string;
+  bgVideo: string | Media;
+  link: {
+    type?: ('reference' | 'custom' | 'form') | null;
+    newTab?: boolean | null;
+    label: string;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    form?: (string | null) | Form;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'intro-solution-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AttackSolutionBlockFields".
+ */
+export interface AttackSolutionBlockFields {
+  title: string;
+  description: string;
+  statisticsList: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'attack-solution-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WebSolutionBlockFields".
+ */
+export interface WebSolutionBlockFields {
+  title: string;
+  descriptionLeft?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  descriptionRight?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  bgImage: string | Media;
+  link: {
+    type?: ('reference' | 'custom' | 'form') | null;
+    newTab?: boolean | null;
+    label: string;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    form?: (string | null) | Form;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'web-solution-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HelpSolutionBlockFields".
+ */
+export interface HelpSolutionBlockFields {
+  title: string;
+  advantagesList: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'help-solution-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ReadySolutionBlockFields".
+ */
+export interface ReadySolutionBlockFields {
+  title: string;
+  description: string;
+  image: string | Media;
+  link: {
+    type?: ('reference' | 'custom' | 'form') | null;
+    newTab?: boolean | null;
+    label: string;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    form?: (string | null) | Form;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ready-solution-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "form-submissions".
  */
 export interface FormSubmission {
@@ -360,6 +983,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: string | Page;
+      } | null)
+    | ({
+        relationTo: 'products';
+        value: string | Product;
+      } | null)
+    | ({
+        relationTo: 'solutions';
+        value: string | Solution;
       } | null)
     | ({
         relationTo: 'forms';
@@ -463,6 +1094,14 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         'intro-home-block'?: T | IntroBlockFieldsSelect<T>;
+        'global-trust-block'?: T | GlobalTrustBlockFieldsSelect<T>;
+        'prevents-attacks-block'?: T | PreventsAttacksBlockFieldsSelect<T>;
+        'quotes-block'?: T | QuotesBlockFieldsSelect<T>;
+        'tailored-protection-block'?: T | TailoredProtectionBlockFieldsSelect<T>;
+        'solutions-block'?: T | SolutionsBlockFieldsSelect<T>;
+        'why-us-block'?: T | WhyUsBlockFieldsSelect<T>;
+        'ready-upgrade-block'?: T | ReadyUpgradeBlockFieldsSelect<T>;
+        'resources-home-block'?: T | ResourcesBlockFieldsSelect<T>;
       };
   privacyText?: T;
   meta?:
@@ -482,8 +1121,471 @@ export interface PagesSelect<T extends boolean = true> {
  * via the `definition` "IntroBlockFields_select".
  */
 export interface IntroBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
   description?: T;
   bgVideo?: T;
+  advantagesList?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GlobalTrustBlockFields_select".
+ */
+export interface GlobalTrustBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  firstStatistic?:
+    | T
+    | {
+        title?: T;
+        numbers?: T;
+        description?: T;
+      };
+  statisticsList?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        numbers?: T;
+        id?: T;
+      };
+  logoCompany?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PreventsAttacksBlockFields_select".
+ */
+export interface PreventsAttacksBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuotesBlockFields_select".
+ */
+export interface QuotesBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  quotesList?:
+    | T
+    | {
+        quote?: T;
+        author?: T;
+        position?: T;
+        logo?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TailoredProtectionBlockFields_select".
+ */
+export interface TailoredProtectionBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  advantagesList?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              label?: T;
+              reference?: T;
+              url?: T;
+              form?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SolutionsBlockFields_select".
+ */
+export interface SolutionsBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  solutionsList?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              label?: T;
+              reference?: T;
+              url?: T;
+              form?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyUsBlockFields_select".
+ */
+export interface WhyUsBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  statisticsList?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ReadyUpgradeBlockFields_select".
+ */
+export interface ReadyUpgradeBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  bgVideo?: T;
+  scheduleDemo?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        label?: T;
+        reference?: T;
+        url?: T;
+        form?: T;
+      };
+  talkToExpert?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        label?: T;
+        reference?: T;
+        url?: T;
+        form?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ResourcesBlockFields_select".
+ */
+export interface ResourcesBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  resourcesList?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products_select".
+ */
+export interface ProductsSelect<T extends boolean = true> {
+  title?: T;
+  productBlocks?:
+    | T
+    | {
+        'intro-product-block'?: T | IntroProductBlockFieldsSelect<T>;
+        'tailoder-product-block'?: T | TailoderProductBlockFieldsSelect<T>;
+        'why-us-product-block'?: T | WhyUsProductBlockFieldsSelect<T>;
+        'trap-product-block'?: T | TrapProductBlockFieldsSelect<T>;
+        'stats-product-block'?: T | StatsProductBlockFieldsSelect<T>;
+        'take-step-product-block'?: T | TakeStepProductBlockFieldsSelect<T>;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  publishedOn?: T;
+  thumbnail?: T;
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IntroProductBlockFields_select".
+ */
+export interface IntroProductBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  bgVideo?: T;
+  advantagesList?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        label?: T;
+        reference?: T;
+        url?: T;
+        form?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TailoderProductBlockFields_select".
+ */
+export interface TailoderProductBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyUsProductBlockFields_select".
+ */
+export interface WhyUsProductBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  advantagesList?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  descriptionBanner?: T;
+  bannerImg?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        label?: T;
+        reference?: T;
+        url?: T;
+        form?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TrapProductBlockFields_select".
+ */
+export interface TrapProductBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  advantagesList?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  descriptionBanner?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        label?: T;
+        reference?: T;
+        url?: T;
+        form?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsProductBlockFields_select".
+ */
+export interface StatsProductBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  bgImage?: T;
+  advantagesList?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TakeStepProductBlockFields_select".
+ */
+export interface TakeStepProductBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  advantagesList?:
+    | T
+    | {
+        text?: T;
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "solutions_select".
+ */
+export interface SolutionsSelect<T extends boolean = true> {
+  title?: T;
+  solutionBlocks?:
+    | T
+    | {
+        'intro-solution-block'?: T | IntroSolutionBlockFieldsSelect<T>;
+        'attack-solution-block'?: T | AttackSolutionBlockFieldsSelect<T>;
+        'web-solution-block'?: T | WebSolutionBlockFieldsSelect<T>;
+        'take-step-product-block'?: T | TakeStepProductBlockFieldsSelect<T>;
+        'help-solution-block'?: T | HelpSolutionBlockFieldsSelect<T>;
+        'ready-solution-block'?: T | ReadySolutionBlockFieldsSelect<T>;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  publishedOn?: T;
+  thumbnail?: T;
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IntroSolutionBlockFields_select".
+ */
+export interface IntroSolutionBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  bgVideo?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        label?: T;
+        reference?: T;
+        url?: T;
+        form?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AttackSolutionBlockFields_select".
+ */
+export interface AttackSolutionBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  statisticsList?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WebSolutionBlockFields_select".
+ */
+export interface WebSolutionBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  descriptionLeft?: T;
+  descriptionRight?: T;
+  bgImage?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        label?: T;
+        reference?: T;
+        url?: T;
+        form?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HelpSolutionBlockFields_select".
+ */
+export interface HelpSolutionBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  advantagesList?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ReadySolutionBlockFields_select".
+ */
+export interface ReadySolutionBlockFieldsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  image?: T;
   link?:
     | T
     | {
@@ -622,6 +1724,17 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Header {
   id: string;
   logo: string | Media;
+  link: {
+    type?: ('reference' | 'custom' | 'form') | null;
+    newTab?: boolean | null;
+    label: string;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    form?: (string | null) | Form;
+  };
   navItems?:
     | {
         link: {
@@ -635,6 +1748,23 @@ export interface Header {
           url?: string | null;
           form?: (string | null) | Form;
         };
+        isSubmenu?: boolean | null;
+        submenu?:
+          | {
+              link: {
+                type?: ('reference' | 'custom' | 'form') | null;
+                newTab?: boolean | null;
+                label: string;
+                reference?: {
+                  relationTo: 'pages';
+                  value: string | Page;
+                } | null;
+                url?: string | null;
+                form?: (string | null) | Form;
+              };
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;
@@ -647,23 +1777,115 @@ export interface Header {
  */
 export interface Footer {
   id: string;
-  titleFooter?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  logo: string | Media;
+  logoGoogle: string | Media;
+  logoGrow: string | Media;
+  navItems?:
+    | {
+        link: {
+          type?: ('reference' | 'custom' | 'form') | null;
+          newTab?: boolean | null;
+          label: string;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          form?: (string | null) | Form;
+        };
+        isSubmenu?: boolean | null;
+        submenu?:
+          | {
+              link: {
+                type?: ('reference' | 'custom' | 'form') | null;
+                newTab?: boolean | null;
+                label: string;
+                reference?: {
+                  relationTo: 'pages';
+                  value: string | Page;
+                } | null;
+                url?: string | null;
+                form?: (string | null) | Form;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  privacyPolicy: {
+    type?: ('reference' | 'custom' | 'form') | null;
+    newTab?: boolean | null;
+    label: string;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    form?: (string | null) | Form;
+  };
+  terms: {
+    type?: ('reference' | 'custom' | 'form') | null;
+    newTab?: boolean | null;
+    label: string;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    form?: (string | null) | Form;
+  };
+  cookies: {
+    type?: ('reference' | 'custom' | 'form') | null;
+    newTab?: boolean | null;
+    label: string;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    form?: (string | null) | Form;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contacts".
+ */
+export interface Contact {
+  id: string;
   email: string;
+  address: string;
+  gMapLink: string;
+  socialLinks: {
+    logo: string | Media;
+    link: string;
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "banner".
+ */
+export interface Banner {
+  id: string;
+  title: string;
   description: string;
+  image: string | Media;
+  link: {
+    type?: ('reference' | 'custom' | 'form') | null;
+    newTab?: boolean | null;
+    label: string;
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    url?: string | null;
+    form?: (string | null) | Form;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -673,6 +1895,16 @@ export interface Footer {
  */
 export interface HeaderSelect<T extends boolean = true> {
   logo?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        label?: T;
+        reference?: T;
+        url?: T;
+        form?: T;
+      };
   navItems?:
     | T
     | {
@@ -686,6 +1918,22 @@ export interface HeaderSelect<T extends boolean = true> {
               url?: T;
               form?: T;
             };
+        isSubmenu?: T;
+        submenu?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    label?: T;
+                    reference?: T;
+                    url?: T;
+                    form?: T;
+                  };
+              id?: T;
+            };
         id?: T;
       };
   updatedAt?: T;
@@ -697,9 +1945,111 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  titleFooter?: T;
+  logo?: T;
+  logoGoogle?: T;
+  logoGrow?: T;
+  navItems?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              label?: T;
+              reference?: T;
+              url?: T;
+              form?: T;
+            };
+        isSubmenu?: T;
+        submenu?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    label?: T;
+                    reference?: T;
+                    url?: T;
+                    form?: T;
+                  };
+              id?: T;
+            };
+        id?: T;
+      };
+  privacyPolicy?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        label?: T;
+        reference?: T;
+        url?: T;
+        form?: T;
+      };
+  terms?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        label?: T;
+        reference?: T;
+        url?: T;
+        form?: T;
+      };
+  cookies?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        label?: T;
+        reference?: T;
+        url?: T;
+        form?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contacts_select".
+ */
+export interface ContactsSelect<T extends boolean = true> {
   email?: T;
+  address?: T;
+  gMapLink?: T;
+  socialLinks?:
+    | T
+    | {
+        logo?: T;
+        link?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "banner_select".
+ */
+export interface BannerSelect<T extends boolean = true> {
+  title?: T;
   description?: T;
+  image?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        label?: T;
+        reference?: T;
+        url?: T;
+        form?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

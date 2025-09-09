@@ -1,34 +1,24 @@
 import type { Block } from 'payload';
 
-import { FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
-
-export const IntroBlock: Block = {
+export const StatsProductBlock: Block = {
   fields: [
     {
       label: 'Title',
       localized: true,
       name: 'title',
       required: true,
-      type: 'textarea',
+      type: 'text',
     },
     {
-      admin: {
-        description: "To highlight in red highlight the desired part of the text and press 'B'",
-      },
-      editor: lexicalEditor({
-        features: ({ rootFeatures }) => {
-          return [...rootFeatures, FixedToolbarFeature()];
-        },
-      }),
       label: 'Description',
       localized: true,
       name: 'description',
-      type: 'richText',
+      required: true,
+      type: 'textarea',
     },
-
     {
-      label: 'Background video or image (.mp4)',
-      name: 'bgVideo',
+      label: 'Background image',
+      name: 'bgImage',
       relationTo: 'media',
       required: true,
       type: 'upload',
@@ -49,7 +39,7 @@ export const IntroBlock: Block = {
               name: 'description',
               required: true,
               localized: true,
-              type: 'text',
+              type: 'textarea',
             },
           ],
           type: 'row',
@@ -65,11 +55,11 @@ export const IntroBlock: Block = {
       type: 'array',
     },
   ],
-  imageURL: '/admin-static/home-intro.jpg',
-  interfaceName: 'IntroBlockFields',
+  imageURL: '/admin-static/stats-product.jpg',
+  interfaceName: 'StatsProductBlockFields',
   labels: {
-    plural: 'Intro block',
-    singular: 'Intro block',
+    plural: 'Stats Product block',
+    singular: 'Stats Product block',
   },
-  slug: 'intro-home-block',
+  slug: 'stats-product-block',
 };

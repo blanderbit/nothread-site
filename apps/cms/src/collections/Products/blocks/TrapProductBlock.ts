@@ -1,20 +1,18 @@
 import type { Block } from 'payload';
 
+import { link } from '@/fields/link';
 import { FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
 
-export const IntroBlock: Block = {
+export const TrapProductBlock: Block = {
   fields: [
     {
       label: 'Title',
       localized: true,
       name: 'title',
       required: true,
-      type: 'textarea',
+      type: 'text',
     },
     {
-      admin: {
-        description: "To highlight in red highlight the desired part of the text and press 'B'",
-      },
       editor: lexicalEditor({
         features: ({ rootFeatures }) => {
           return [...rootFeatures, FixedToolbarFeature()];
@@ -27,16 +25,16 @@ export const IntroBlock: Block = {
     },
 
     {
-      label: 'Background video or image (.mp4)',
-      name: 'bgVideo',
-      relationTo: 'media',
-      required: true,
-      type: 'upload',
-    },
-    {
       fields: [
         {
           fields: [
+            {
+              label: 'Icon',
+              name: 'icon',
+              relationTo: 'media',
+              required: true,
+              type: 'upload',
+            },
             {
               label: 'Title',
               name: 'title',
@@ -49,7 +47,7 @@ export const IntroBlock: Block = {
               name: 'description',
               required: true,
               localized: true,
-              type: 'text',
+              type: 'textarea',
             },
           ],
           type: 'row',
@@ -64,12 +62,33 @@ export const IntroBlock: Block = {
       name: 'advantagesList',
       type: 'array',
     },
+    {
+      fields: [
+        {
+          editor: lexicalEditor({
+            features: ({ rootFeatures }) => {
+              return [...rootFeatures, FixedToolbarFeature()];
+            },
+          }),
+          label: 'Description',
+          localized: true,
+          name: 'descriptionBanner',
+          type: 'richText',
+        },
+
+        link({
+          overrides: { label: 'Book a Demo' },
+        }),
+      ],
+      label: 'Banner',
+      type: 'group',
+    },
   ],
-  imageURL: '/admin-static/home-intro.jpg',
-  interfaceName: 'IntroBlockFields',
+  imageURL: '/admin-static/trap-product.jpg',
+  interfaceName: 'TrapProductBlockFields',
   labels: {
-    plural: 'Intro block',
-    singular: 'Intro block',
+    plural: 'Trap Threats Product block',
+    singular: 'Trap Threats Product block',
   },
-  slug: 'intro-home-block',
+  slug: 'trap-product-block',
 };

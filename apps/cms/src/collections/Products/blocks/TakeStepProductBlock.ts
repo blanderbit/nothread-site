@@ -1,42 +1,43 @@
 import type { Block } from 'payload';
 
-import { FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
-
-export const IntroBlock: Block = {
+export const TakeStepProductBlock: Block = {
   fields: [
     {
       label: 'Title',
       localized: true,
       name: 'title',
       required: true,
-      type: 'textarea',
+      type: 'text',
     },
     {
-      admin: {
-        description: "To highlight in red highlight the desired part of the text and press 'B'",
-      },
-      editor: lexicalEditor({
-        features: ({ rootFeatures }) => {
-          return [...rootFeatures, FixedToolbarFeature()];
-        },
-      }),
       label: 'Description',
-      localized: true,
       name: 'description',
-      type: 'richText',
-    },
-
-    {
-      label: 'Background video or image (.mp4)',
-      name: 'bgVideo',
-      relationTo: 'media',
       required: true,
-      type: 'upload',
+      localized: true,
+      type: 'textarea',
     },
     {
       fields: [
         {
+          label: 'Text small investment',
+          admin: {
+            placeholder:
+              'For a small investment with Nothreat, you can save on potentially crippling costs associated with the following:',
+          },
+          localized: true,
+          name: 'text',
+          required: true,
+          type: 'textarea',
+        },
+        {
           fields: [
+            {
+              label: 'Icon',
+              name: 'icon',
+              relationTo: 'media',
+              required: true,
+              type: 'upload',
+            },
             {
               label: 'Title',
               name: 'title',
@@ -49,7 +50,7 @@ export const IntroBlock: Block = {
               name: 'description',
               required: true,
               localized: true,
-              type: 'text',
+              type: 'textarea',
             },
           ],
           type: 'row',
@@ -65,11 +66,11 @@ export const IntroBlock: Block = {
       type: 'array',
     },
   ],
-  imageURL: '/admin-static/home-intro.jpg',
-  interfaceName: 'IntroBlockFields',
+  imageURL: '/admin-static/take-step-product.jpg',
+  interfaceName: 'TakeStepProductBlockFields',
   labels: {
-    plural: 'Intro block',
-    singular: 'Intro block',
+    plural: 'Take Step Product block',
+    singular: 'Take Step Product block',
   },
-  slug: 'intro-home-block',
+  slug: 'take-step-product-block',
 };

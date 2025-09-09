@@ -16,15 +16,60 @@ export const Header: GlobalConfig = {
       required: true,
       type: 'upload',
     },
-
+    link({
+      appearances: false,
+      overrides: {
+        label: 'Request a Demo',
+      },
+    }),
     {
+      admin: {
+        components: {
+          RowLabel: '@/fields/CustomRowLabel#CustomRowLabel',
+        },
+      },
       fields: [
         link({
           appearances: false,
+          overrides: {
+            label: 'Link',
+          },
         }),
+        {
+          type: 'checkbox',
+          label: 'Submenu',
+          defaultValue: false,
+          name: 'isSubmenu',
+        },
+        {
+          admin: {
+            components: {
+              RowLabel: '@/fields/CustomRowLabel#CustomRowLabel',
+            },
+            condition: (_data, siblingData) => siblingData.isSubmenu,
+          },
+          fields: [
+            link({
+              appearances: false,
+              overrides: {
+                label: 'Submenu (Link)',
+              },
+            }),
+          ],
+          type: 'array',
+          name: 'submenu',
+          label: 'Submenu',
+          labels: {
+            singular: 'Link',
+            plural: 'Submenu',
+          },
+        },
       ],
-      label: 'Navigation',
-      maxRows: 6,
+      label: 'Navigation List',
+      labels: {
+        plural: 'Navigation List',
+        singular: 'Menu Item',
+      },
       name: 'navItems',
       type: 'array',
     },

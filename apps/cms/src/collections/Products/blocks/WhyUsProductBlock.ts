@@ -1,20 +1,18 @@
 import type { Block } from 'payload';
 
+import { link } from '@/fields/link';
 import { FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
 
-export const IntroBlock: Block = {
+export const WhyUsProductBlock: Block = {
   fields: [
     {
       label: 'Title',
       localized: true,
       name: 'title',
       required: true,
-      type: 'textarea',
+      type: 'text',
     },
     {
-      admin: {
-        description: "To highlight in red highlight the desired part of the text and press 'B'",
-      },
       editor: lexicalEditor({
         features: ({ rootFeatures }) => {
           return [...rootFeatures, FixedToolbarFeature()];
@@ -27,16 +25,16 @@ export const IntroBlock: Block = {
     },
 
     {
-      label: 'Background video or image (.mp4)',
-      name: 'bgVideo',
-      relationTo: 'media',
-      required: true,
-      type: 'upload',
-    },
-    {
       fields: [
         {
           fields: [
+            {
+              label: 'Icon',
+              name: 'icon',
+              relationTo: 'media',
+              required: true,
+              type: 'upload',
+            },
             {
               label: 'Title',
               name: 'title',
@@ -49,7 +47,7 @@ export const IntroBlock: Block = {
               name: 'description',
               required: true,
               localized: true,
-              type: 'text',
+              type: 'textarea',
             },
           ],
           type: 'row',
@@ -64,12 +62,35 @@ export const IntroBlock: Block = {
       name: 'advantagesList',
       type: 'array',
     },
+    {
+      fields: [
+        {
+          label: 'Description',
+          name: 'descriptionBanner',
+          required: true,
+          localized: true,
+          type: 'textarea',
+        },
+        {
+          label: 'Banner image',
+          name: 'bannerImg',
+          relationTo: 'media',
+          required: true,
+          type: 'upload',
+        },
+        link({
+          overrides: { label: 'Book a Demo' },
+        }),
+      ],
+      label: 'Banner',
+      type: 'group',
+    },
   ],
-  imageURL: '/admin-static/home-intro.jpg',
-  interfaceName: 'IntroBlockFields',
+  imageURL: '/admin-static/why-us-product.jpg',
+  interfaceName: 'WhyUsProductBlockFields',
   labels: {
-    plural: 'Intro block',
-    singular: 'Intro block',
+    plural: 'Why Us Product block',
+    singular: 'Why Us Product block',
   },
-  slug: 'intro-home-block',
+  slug: 'why-us-product-block',
 };
