@@ -5,11 +5,14 @@ import { buildConfig } from 'payload';
 import sharp from 'sharp';
 import { fileURLToPath } from 'url';
 
-import { uk } from '@payloadcms/translations/languages/uk';
 import { Media } from './collections/Media';
 import { Pages } from './collections/Pages';
+import { Products } from './collections/Products';
+import { Solutions } from './collections/Solutions';
 import { Users } from './collections/Users';
 import { defaultLocale, localesPayloadConfig } from './config';
+import { Banner } from './globals/Banner';
+import { Contacts } from './globals/Contacts';
 import { Footer } from './globals/Footer';
 import { Header } from './globals/Header';
 import { plugins } from './plugins';
@@ -27,11 +30,7 @@ import {
   UnorderedListFeature,
 } from '@payloadcms/richtext-lexical';
 import { en } from '@payloadcms/translations/languages/en';
-
-import { Contacts } from './globals/Contacts';
-import { Banner } from './globals/Banner';
-import { Products } from './collections/Products';
-import { Solutions } from './collections/Solutions';
+import { uk } from '@payloadcms/translations/languages/uk';
 
 const filename = fileURLToPath(import.meta.url);
 

@@ -1,6 +1,7 @@
 import type { Block } from 'payload';
 
 import { link } from '@/fields/link';
+
 import { FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
 
 export const WebSolutionBlock: Block = {

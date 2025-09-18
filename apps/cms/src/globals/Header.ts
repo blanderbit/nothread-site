@@ -42,27 +42,52 @@ export const Header: GlobalConfig = {
           name: 'isSubmenu',
         },
         {
-          admin: {
-            components: {
-              RowLabel: '@/fields/CustomRowLabel#CustomRowLabel',
-            },
-            condition: (_data, siblingData) => siblingData.isSubmenu,
-          },
           fields: [
+            {
+              admin: {
+                components: {
+                  RowLabel: '@/fields/CustomRowLabel#CustomRowLabel',
+                },
+              },
+              fields: [
+                link({
+                  appearances: false,
+                  overrides: {
+                    label: 'Submenu (Link)',
+                  },
+                }),
+              ],
+              type: 'array',
+              name: 'submenu',
+              required: true,
+              label: 'Submenu',
+              labels: {
+                singular: 'Link',
+                plural: 'Submenu',
+              },
+            },
+            {
+              type: 'checkbox',
+              label: 'With all link',
+              defaultValue: false,
+              name: 'allLink',
+            },
             link({
               appearances: false,
               overrides: {
-                label: 'Submenu (Link)',
+                label: 'All link',
+                admin: {
+                  condition: (_data: any, siblingData: any) => siblingData.allLink,
+                },
               },
             }),
           ],
-          type: 'array',
-          name: 'submenu',
-          label: 'Submenu',
-          labels: {
-            singular: 'Link',
-            plural: 'Submenu',
+          admin: {
+            condition: (_data, siblingData) => siblingData.isSubmenu,
           },
+          label: 'Submenu block',
+          name: 'submenuGroup',
+          type: 'group',
         },
       ],
       label: 'Navigation List',
@@ -71,6 +96,7 @@ export const Header: GlobalConfig = {
         singular: 'Menu Item',
       },
       name: 'navItems',
+      required: true,
       type: 'array',
     },
   ],

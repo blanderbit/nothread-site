@@ -5,25 +5,25 @@ import { slugField } from '@/fields/slug';
 import { slugBeforeRead } from '@/hooks/getSlugs';
 import { populatePublishedAt } from '@/hooks/populatePublishedAt';
 
+import { GlobalTrustBlock } from './blocks/home/GlobalTrustBlock';
 import { IntroBlock } from './blocks/home/IntroBlock';
+import { PreventsAttacksBlock } from './blocks/home/PreventsAttacksBlock';
+import { QuotesBlock } from './blocks/home/QuotesBlock';
+import { ReadyUpgradeBlock } from './blocks/home/ReadyUpgradeBlock';
+import { ResourcesBlock } from './blocks/home/ResourcesBlock';
+import { SolutionBlock } from './blocks/home/SolutionBlock';
+import { TailoredProtectionBlock } from './blocks/home/TailoredProtectionBlock';
+import { WhyUsBlock } from './blocks/home/WhyUsBlock';
 import { revalidatePage } from './hooks/revalidatePage';
 
 import { HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
-import { GlobalTrustBlock } from './blocks/home/GlobalTrustBlock';
-import { PreventsAttacksBlock } from './blocks/home/PreventsAttacksBlock';
-import { QuotesBlock } from './blocks/home/QuotesBlock';
-import { TailoredProtectionBlock } from './blocks/home/TailoredProtectionBlock';
-import { SolutionBlock } from './blocks/home/SolutionBlock';
-import { WhyUsBlock } from './blocks/home/WhyUsBlock';
-import { ReadyUpgradeBlock } from './blocks/home/ReadyUpgradeBlock';
-import { ResourcesBlock } from './blocks/home/ResourcesBlock';
 
 export const Pages: CollectionConfig = {
   access: {
     read: () => true,
   },
   admin: {
-    group: 'Контент',
+    group: 'Content',
     useAsTitle: 'title',
   },
   fields: [

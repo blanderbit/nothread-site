@@ -2,11 +2,13 @@
 
 import { createContext, useContext } from 'react';
 
-import type { Footer, Header } from '@monorepo/cms/src/payload-types';
+import type { Banner, Contact,Footer, Header } from '@monorepo/cms/src/payload-types';
 
 export const GlobalsContext = createContext<{
   footer: Footer;
   header: Header;
+  banner: Banner;
+  contacts: Contact;
 } | null>(null);
 
 export const useGlobals = () => {

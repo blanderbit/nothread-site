@@ -13,7 +13,7 @@ export const IntroBlock: Block = {
     },
     {
       admin: {
-        description: "To highlight in red highlight the desired part of the text and press 'B'",
+        description: "To highlight in violet highlight the desired part of the text and press 'B'",
       },
       editor: lexicalEditor({
         features: ({ rootFeatures }) => {

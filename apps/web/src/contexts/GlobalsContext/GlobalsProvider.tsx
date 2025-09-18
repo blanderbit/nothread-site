@@ -2,19 +2,27 @@
 
 import type { PropsWithChildren } from 'react';
 
-import type { Footer, Header } from '@monorepo/cms/src/payload-types';
+import type { Banner, Contact,Footer, Header } from '@monorepo/cms/src/payload-types';
 
 import { GlobalsContext } from './GlobalsContext';
 
 type GlobalsProviderProps = {
   footer: Footer;
   header: Header;
+  banner: Banner;
+  contacts: Contact;
 };
 
 export const GlobalsProvider = ({
   children,
   footer,
   header,
+  banner,
+  contacts,
 }: PropsWithChildren<GlobalsProviderProps>) => {
-  return <GlobalsContext.Provider value={{ footer, header }}>{children}</GlobalsContext.Provider>;
+  return (
+    <GlobalsContext.Provider value={{ footer, header, banner, contacts }}>
+      {children}
+    </GlobalsContext.Provider>
+  );
 };

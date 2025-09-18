@@ -1,15 +1,15 @@
-import { dateField } from '@/fields/date';
-import { slugField } from '@/fields/slug';
-import { CollectionConfig } from 'payload';
+import type { CollectionConfig } from 'payload';
 
+import { dateField } from '@/fields/date';
 import { seoFields } from '@/fields/seo';
+import { slugField } from '@/fields/slug';
 
 import { IntroProductBlock } from './blocks/IntroProductBlock';
-import { TailoderProductBlock } from './blocks/TailoredProductBlock';
-import { WhyUsProductBlock } from './blocks/WhyUsProductBlock';
-import { TrapProductBlock } from './blocks/TrapProductBlock';
 import { StatsProductBlock } from './blocks/StatsProductBlock';
+import { TailoderProductBlock } from './blocks/TailoredProductBlock';
 import { TakeStepProductBlock } from './blocks/TakeStepProductBlock';
+import { TrapProductBlock } from './blocks/TrapProductBlock';
+import { WhyUsProductBlock } from './blocks/WhyUsProductBlock';
 
 export const Products: CollectionConfig = {
   access: {

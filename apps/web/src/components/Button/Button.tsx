@@ -10,26 +10,22 @@ import styles from './Button.module.scss';
 type Props = {
   asDiv?: boolean;
   copyUrl?: string;
-  darkGrey?: boolean;
   fullWIdth?: boolean;
   icon?: ReactNode;
-  red?: boolean;
-  redBorder?: boolean;
+  violet?: boolean;
+  dark?: boolean;
   rounded?: boolean;
-  white?: boolean;
 } & ComponentProps<'button'>;
 
 export const Button = ({
   asDiv,
   children,
   className,
-  darkGrey,
+  dark,
   fullWIdth,
   icon,
-  red,
-  redBorder,
+  violet,
   rounded,
-  white = false,
   ...buttonHTMLAttrs
 }: Props) => {
   const Component = asDiv ? 'div' : 'button';
@@ -41,15 +37,13 @@ export const Button = ({
         className={clsx(
           styles.wrapper,
           fullWIdth && styles.fullWidth,
-          white && styles.white,
+          violet && styles.violet,
           rounded && styles.rounded,
-          redBorder && styles.redBorder,
-          darkGrey && styles.darkGrey,
-          red && styles.red,
+          dark && styles.dark,
           className,
         )}
       >
-        <Text color={red ? 'milk' : 'red'} type='button'>
+        <Text color={'white'} className={styles['text-button']}>
           {children}
         </Text>
         {icon && icon}

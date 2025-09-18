@@ -1,13 +1,14 @@
 import type { Block } from 'payload';
 
-import { FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
 import { link } from '@/fields/link';
+
+import { FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
 
 export const ReadyUpgradeBlock: Block = {
   fields: [
     {
       admin: {
-        description: "To highlight in red highlight the desired part of the text and press 'B'",
+        description: "To highlight in violet highlight the desired part of the text and press 'B'",
       },
       editor: lexicalEditor({
         features: ({ rootFeatures }) => {

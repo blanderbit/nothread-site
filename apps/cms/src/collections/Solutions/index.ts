@@ -1,15 +1,15 @@
-import { dateField } from '@/fields/date';
-import { slugField } from '@/fields/slug';
-import { CollectionConfig } from 'payload';
+import type { CollectionConfig } from 'payload';
 
+import { dateField } from '@/fields/date';
 import { seoFields } from '@/fields/seo';
-import { IntroSolutionBlock } from './blocks/IntroSolutionBlock';
-import { AttackSolutionBlock } from './blocks/AttackSolutionBlock';
-import { WebSolutionBlock } from './blocks/WebSolutionBlock';
+import { slugField } from '@/fields/slug';
 
 import { TakeStepProductBlock } from '../Products/blocks/TakeStepProductBlock';
-import { ReadySolutionBlock } from './blocks/ReadySolutionBlock';
+import { AttackSolutionBlock } from './blocks/AttackSolutionBlock';
 import { HelpSolutionBlock } from './blocks/HelpSolutionBlock';
+import { IntroSolutionBlock } from './blocks/IntroSolutionBlock';
+import { ReadySolutionBlock } from './blocks/ReadySolutionBlock';
+import { WebSolutionBlock } from './blocks/WebSolutionBlock';
 
 export const Solutions: CollectionConfig = {
   access: {

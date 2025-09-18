@@ -247,7 +247,7 @@ export interface Page {
 export interface IntroBlockFields {
   title: string;
   /**
-   * To highlight in red highlight the desired part of the text and press 'B'
+   * To highlight in violet highlight the desired part of the text and press 'B'
    */
   description?: {
     root: {
@@ -499,7 +499,7 @@ export interface WhyUsBlockFields {
  */
 export interface ReadyUpgradeBlockFields {
   /**
-   * To highlight in red highlight the desired part of the text and press 'B'
+   * To highlight in violet highlight the desired part of the text and press 'B'
    */
   title?: {
     root: {
@@ -1735,8 +1735,21 @@ export interface Header {
     url?: string | null;
     form?: (string | null) | Form;
   };
-  navItems?:
-    | {
+  navItems: {
+    link: {
+      type?: ('reference' | 'custom' | 'form') | null;
+      newTab?: boolean | null;
+      label: string;
+      reference?: {
+        relationTo: 'pages';
+        value: string | Page;
+      } | null;
+      url?: string | null;
+      form?: (string | null) | Form;
+    };
+    isSubmenu?: boolean | null;
+    submenuGroup?: {
+      submenu: {
         link: {
           type?: ('reference' | 'custom' | 'form') | null;
           newTab?: boolean | null;
@@ -1748,26 +1761,23 @@ export interface Header {
           url?: string | null;
           form?: (string | null) | Form;
         };
-        isSubmenu?: boolean | null;
-        submenu?:
-          | {
-              link: {
-                type?: ('reference' | 'custom' | 'form') | null;
-                newTab?: boolean | null;
-                label: string;
-                reference?: {
-                  relationTo: 'pages';
-                  value: string | Page;
-                } | null;
-                url?: string | null;
-                form?: (string | null) | Form;
-              };
-              id?: string | null;
-            }[]
-          | null;
         id?: string | null;
-      }[]
-    | null;
+      }[];
+      allLink?: boolean | null;
+      link?: {
+        type?: ('reference' | 'custom' | 'form') | null;
+        newTab?: boolean | null;
+        label: string;
+        reference?: {
+          relationTo: 'pages';
+          value: string | Page;
+        } | null;
+        url?: string | null;
+        form?: (string | null) | Form;
+      };
+    };
+    id?: string | null;
+  }[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1919,9 +1929,25 @@ export interface HeaderSelect<T extends boolean = true> {
               form?: T;
             };
         isSubmenu?: T;
-        submenu?:
+        submenuGroup?:
           | T
           | {
+              submenu?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          label?: T;
+                          reference?: T;
+                          url?: T;
+                          form?: T;
+                        };
+                    id?: T;
+                  };
+              allLink?: T;
               link?:
                 | T
                 | {
@@ -1932,7 +1958,6 @@ export interface HeaderSelect<T extends boolean = true> {
                     url?: T;
                     form?: T;
                   };
-              id?: T;
             };
         id?: T;
       };

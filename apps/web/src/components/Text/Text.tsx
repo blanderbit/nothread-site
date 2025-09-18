@@ -20,7 +20,7 @@ type TextTag =
   | 'span'
   | 'ul';
 
-export type TextType = 'button' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'p1' | 'p2' | 'p3' | 'p4';
+export type TextType = 'button' | 'h1' | 'h2' | 'h3' | 'h4' | 'p1' | 'p2';
 
 const textTypeTagMapper: Record<TextType, TextTag> = {
   button: 'span',
@@ -28,17 +28,14 @@ const textTypeTagMapper: Record<TextType, TextTag> = {
   h2: 'h2',
   h3: 'h3',
   h4: 'h4',
-  h5: 'h5',
   p1: 'p',
   p2: 'p',
-  p3: 'p',
-  p4: 'p',
 };
 
 export type TextProps = {
   align?: 'center' | 'end' | 'start';
   className?: string;
-  color?: 'error' | 'milk' | 'red';
+  color?: 'error' | 'white' | 'text';
   fontWeight?: '300' | '400';
   html?: string;
   tag?: TextTag;

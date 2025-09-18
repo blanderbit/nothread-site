@@ -8,18 +8,13 @@ import type { IntroBlockFields } from '@monorepo/cms/src/payload-types';
 
 import styles from './Intro.module.scss';
 
-export const Intro = ({ bgVideo, description, link }: IntroBlockFields) => {
+export const Intro = ({ bgVideo, description, advantagesList, title }: IntroBlockFields) => {
   return (
     <section className={styles.wrapper}>
-      <CMSMedia resource={bgVideo} videoClassName={styles.video} />
+      <CMSMedia resource={bgVideo} className={styles.video} />
       <Container>
         <div className={styles['content-wrapper']}>
-          <div className={styles['title-wrapper']}>
-            <div className={styles['middle-line']}>{description}</div>
-          </div>
-          <div className={styles['btn-wrapper']}>
-            <CMSLink {...link}>{link.label}</CMSLink>
-          </div>
+          <div className={styles['title-wrapper']}></div>
         </div>
       </Container>
     </section>
