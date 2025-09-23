@@ -35,7 +35,7 @@ const textTypeTagMapper: Record<TextType, TextTag> = {
 export type TextProps = {
   align?: 'center' | 'end' | 'start';
   className?: string;
-  color?: 'error' | 'white' | 'text';
+  color?: 'error' | 'white' | 'text' | 'light-violet';
   fontWeight?: '300' | '400';
   html?: string;
   tag?: TextTag;

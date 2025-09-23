@@ -1,2 +1,61 @@
 .wrapper {
+  position: relative;
+  padding-top: 70px;
+}
+
+.logo {
+  width: 100%;
+  max-width: 327px;
+}
+
+.bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.content-wrapper {
+  display: grid;
+  row-gap: 50px;
+  padding-top: 65px;
+}
+
+.right {
+  display: grid;
+  row-gap: 32px;
+}
+
+.social-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+.socials-link {
+  width: 20px;
+  height: 20px;
+  img {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.submenu-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }

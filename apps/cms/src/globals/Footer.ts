@@ -4,8 +4,6 @@ import { link } from '@/fields/link';
 
 import { revalidateFooter } from './hooks/revalidateFooter';
 
-import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
-
 export const Footer: GlobalConfig = {
   access: {
     read: () => true,
@@ -14,6 +12,13 @@ export const Footer: GlobalConfig = {
     {
       label: 'Logo',
       name: 'logo',
+      relationTo: 'media',
+      required: true,
+      type: 'upload',
+    },
+    {
+      label: 'Background image',
+      name: 'bgImage',
       relationTo: 'media',
       required: true,
       type: 'upload',

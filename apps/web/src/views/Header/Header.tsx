@@ -1,22 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import clsx from 'clsx';
-import { useTranslations } from 'next-intl';
-
-import { Container } from '@/components/Container';
-import styles from './Header.module.scss';
-import { SelectLanguage } from '@/components/SelectLanguage';
-import { useGlobals } from '@/contexts/GlobalsContext';
-import { CMSMedia } from '@/components/CMSMedia';
 import Link from 'next/link';
-import { CMSLink } from '@/components/CMSLink';
-import { Button } from '@/components/Button';
-import { Modal } from '@/components/Modal';
+// import { useTranslations } from 'next-intl';
 import { Close } from '@radix-ui/react-dialog';
+
 import { Accordion } from '@/components/Accordion';
-import { Text } from '@/components/Text';
+import { Button } from '@/components/Button';
+import { CMSLink } from '@/components/CMSLink';
+import { CMSMedia } from '@/components/CMSMedia';
+import { Container } from '@/components/Container';
+import { Modal } from '@/components/Modal';
 import { Responsive } from '@/components/Responsive';
+// import { SelectLanguage } from '@/components/SelectLanguage';
+import { Text } from '@/components/Text';
+import { useGlobals } from '@/contexts/GlobalsContext';
+
+import styles from './Header.module.scss';
 
 export const Header = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -28,6 +29,17 @@ export const Header = () => {
   const { socialLinks } = contacts;
 
   const { link, logo, navItems } = header;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScroll(window.scrollY > 50);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <header
@@ -88,7 +100,27 @@ export const Header = () => {
                                   </CMSLink>
                                 </li>
                               ))}
-                              {withAllLink && <CMSLink {...allLink}>{allLink?.label}</CMSLink>}
+                              {withAllLink && (
+                                <div className={styles['all-wrapper']}>
+                                  <CMSLink {...allLink}>
+                                    <Text type='p2' color='text'>
+                                      {allLink?.label}
+                                    </Text>
+                                  </CMSLink>
+                                  <svg
+                                    xmlns='http://www.w3.org/2000/svg'
+                                    width='19'
+                                    height='16'
+                                    viewBox='0 0 19 16'
+                                    fill='none'
+                                  >
+                                    <path
+                                      d='M11.6215 0.545593L18.5158 7.43988C18.6564 7.58054 18.7354 7.7713 18.7354 7.97021C18.7354 8.16913 18.6564 8.35989 18.5158 8.50054L11.6215 15.3948C11.4808 15.5355 11.29 15.6145 11.0911 15.6145C10.8922 15.6145 10.7015 15.5355 10.5608 15.3948C10.4202 15.2542 10.3411 15.0634 10.3411 14.8645C10.3411 14.6656 10.4202 14.4748 10.5608 14.3342L16.175 8.71997L1.01486 8.72063C0.81584 8.72063 0.624969 8.64157 0.484238 8.50084C0.343508 8.36011 0.264446 8.16924 0.264446 7.97021C0.264446 7.77119 0.343508 7.58032 0.484238 7.43959C0.624969 7.29886 0.81584 7.2198 1.01486 7.2198L16.175 7.22046L10.5608 1.60625C10.4202 1.4656 10.3411 1.27484 10.3411 1.07592C10.3411 0.877011 10.4202 0.686246 10.5608 0.545593C10.7015 0.404941 10.8922 0.325923 11.0911 0.325923C11.29 0.325923 11.4808 0.404941 11.6215 0.545593Z'
+                                      fill='#7F58FF'
+                                    />
+                                  </svg>
+                                </div>
+                              )}
                             </ul>
                           </div>
                         </>

@@ -1,4 +1,5 @@
 .wrapper {
+  position: relative;
   height: 100dvh;
 
   @include tablet {
@@ -12,7 +13,71 @@
 }
 
 .video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-top: 130px;
+  @include desktop {
+    margin: 0 auto;
+    padding-top: 300px;
+    max-width: 1420px;
+    height: 100vh;
+  }
+}
+
+.title-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  @include desktop {
+    gap: 60px;
+    text-align: center;
+  }
+}
+
+.description {
+  strong {
+    color: var(--Accent, #7f58ff);
+    font-weight: 400;
+  }
+  @include desktop {
+  }
+}
+
+.list-wrapper {
+  display: grid;
+  row-gap: 20px;
+  padding-top: 70px;
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-between;
+    gap: 60px;
+    margin-top: auto;
+    padding-top: 20px;
+    padding-bottom: 70px;
+  }
+}
+
+.list-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #30264f;
+  border-radius: 12px;
+  background: #110920;
+  padding: 20px;
+  @include desktop {
+    border-radius: 16px;
+    background: var(--Glass-Box, rgba(24, 14, 47, 0.8));
+    padding: 30px;
+  }
 }

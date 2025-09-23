@@ -12,6 +12,10 @@
     padding-top: 16px;
     padding-bottom: 16px;
   }
+
+  &.scrolled {
+    background: var(--Glass-Box, rgba(24, 14, 47, 0.8));
+  }
 }
 
 .content-wrapper {
@@ -36,6 +40,7 @@
     height: 34px;
     span {
       font-size: 12px;
+      line-height: 100%;
     }
   }
   @include desktop {
@@ -132,6 +137,8 @@
 
 .socials-links {
   display: flex;
+  align-items: center;
+  gap: 25px;
   margin-top: auto;
   padding-top: 30px;
 }
@@ -174,6 +181,7 @@
       transform 0.3s;
     cursor: auto;
     padding-top: 15px;
+    // width: 272px;
     pointer-events: none;
   }
 
@@ -230,6 +238,22 @@
   @include desktop {
     .list {
       gap: 30px;
+    }
+  }
+}
+
+.all-wrapper {
+  display: flex;
+  gap: 10px;
+  transition: 0.3s;
+  margin-left: auto;
+  border-bottom: 1px solid transparent;
+  padding-top: 5px;
+  width: fit-content;
+  &:hover {
+    border-bottom: 1px solid var(--Accent, #7f58ff);
+    p {
+      color: var(--Accent, #7f58ff);
     }
   }
 }

@@ -14,7 +14,7 @@
   @include desktop {
     max-width: 1700px;
   }
-  .wide {
+  &.wide {
     @include desktop {
       padding: 0 50px;
       max-width: 1920px;

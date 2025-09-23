@@ -1788,6 +1788,7 @@ export interface Header {
 export interface Footer {
   id: string;
   logo: string | Media;
+  bgImage: string | Media;
   logoGoogle: string | Media;
   logoGrow: string | Media;
   navItems?:
@@ -1971,6 +1972,7 @@ export interface HeaderSelect<T extends boolean = true> {
  */
 export interface FooterSelect<T extends boolean = true> {
   logo?: T;
+  bgImage?: T;
   logoGoogle?: T;
   logoGrow?: T;
   navItems?:

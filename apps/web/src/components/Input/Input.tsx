@@ -26,7 +26,7 @@ const InputWithoutRef = (
     value,
     ...inputHTMLAttrs
   }: InputProps,
-   
+
   ref: ForwardedRef<any>,
 ) => {
   return (
@@ -45,7 +45,7 @@ const InputWithoutRef = (
         ref={ref}
       />
       {label && (
-        <Text className={styles.label} tag='span' type='p4'>
+        <Text className={styles.label} tag='span' type='p2'>
           {label}
         </Text>
       )}
