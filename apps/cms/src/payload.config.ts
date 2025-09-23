@@ -5,11 +5,14 @@ import { buildConfig } from 'payload';
 import sharp from 'sharp';
 import { fileURLToPath } from 'url';
 
-// import { uk } from '@payloadcms/translations/languages/uk';
 import { Media } from './collections/Media';
 import { Pages } from './collections/Pages';
+import { Products } from './collections/Products';
+import { Solutions } from './collections/Solutions';
 import { Users } from './collections/Users';
-import { defaultLocale,localesPayloadConfig } from './config';
+import { defaultLocale, localesPayloadConfig } from './config';
+import { Banner } from './globals/Banner';
+import { Contacts } from './globals/Contacts';
 import { Footer } from './globals/Footer';
 import { Header } from './globals/Header';
 import { plugins } from './plugins';
@@ -27,6 +30,7 @@ import {
   UnorderedListFeature,
 } from '@payloadcms/richtext-lexical';
 import { en } from '@payloadcms/translations/languages/en';
+import { uk } from '@payloadcms/translations/languages/uk';
 
 const filename = fileURLToPath(import.meta.url);
 
@@ -44,7 +48,7 @@ export default buildConfig({
     },
     user: Users.slug,
   },
-  collections: [Users, Media, Pages],
+  collections: [Users, Media, Pages, Products, Solutions],
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
@@ -62,7 +66,7 @@ export default buildConfig({
       ];
     },
   }),
-  globals: [Header, Footer],
+  globals: [Header, Footer, Contacts, Banner],
   async onInit(payload) {
     if (process.env.NODE_ENV !== 'production') {
       const existingUsers = await payload.find({
@@ -103,7 +107,7 @@ export default buildConfig({
   i18n: {
     supportedLanguages: {
       en: { dateFNSKey: 'en-US', translations: en.translations },
-      // uk: { dateFNSKey: 'uk', translations: uk.translations },
+      uk: { dateFNSKey: 'uk', translations: uk.translations },
     },
   },
   localization: {

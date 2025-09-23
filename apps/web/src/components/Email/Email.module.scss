@@ -1,13 +1,18 @@
 .wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  svg {
+    display: flex;
+    width: 20px;
+    height: 20px;
+  }
   @include tablet {
-
   }
 
   @include laptop {
-
   }
 
   @include desktop {
-
   }
 }

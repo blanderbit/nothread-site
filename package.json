@@ -11,7 +11,9 @@
     "dev:cms": "turbo dev --filter=@monorepo/cms",
     "dev:web": "turbo dev --filter=@monorepo/web",
     "build:web": "turbo build --filter=@monorepo/web",
-    "build:cms": "turbo build --filter=@monorepo/cms"
+    "build:cms": "turbo build --filter=@monorepo/cms",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^15.5.2",

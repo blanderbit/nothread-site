@@ -5,7 +5,7 @@ import type { PayloadClientReactComponent, RowLabelComponent } from 'payload';
 
 import { useRowLabel } from '@payloadcms/ui';
 
-export const CustomRowLabelNavItems: PayloadClientReactComponent<RowLabelComponent> = () => {
+export const CustomRowLabel: PayloadClientReactComponent<RowLabelComponent> = () => {
   const { data, path } = useRowLabel<any>();
 
   if (data.link) {

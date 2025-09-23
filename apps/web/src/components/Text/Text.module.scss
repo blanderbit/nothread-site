@@ -1,59 +1,13 @@
 .h1 {
   font-style: normal;
-  font-weight: 300;
-  font-size: 80px;
-  line-height: 100%; /* 80px */
-  font-family: var(--font-primary);
-  font-feature-settings: 'liga' off;
-  text-transform: uppercase;
-
-  @include tablet {
-    font-size: 135px;
-  }
-
-  @include laptop {
-    font-size: 250px;
-  }
-
-  @include desktop {
-    font-size: 330px;
-  }
-}
-
-.h2 {
-  font-style: normal;
-  font-weight: 300;
-  font-size: 62px;
-  line-height: 100%; /* 62px */
-  font-family: var(--font-primary);
-  text-transform: uppercase;
-
-  @include tablet {
-    font-size: 110px;
-  }
-
-  @include laptop {
-    font-size: 140px;
-  }
-
-  @include desktop {
-    font-size: 190px;
-  }
-}
-
-.h3 {
-  font-style: normal;
   font-weight: 400;
-  font-size: 30px;
-  line-height: 120%;
-  font-family: var(--font-primary);
-
+  font-size: 32px;
+  line-height: 105%; /* 33.6px */
+  letter-spacing: -0.64px;
   @include tablet {
-    font-size: 50px;
   }
 
   @include laptop {
-    font-size: 65px;
   }
 
   @include desktop {
@@ -61,53 +15,61 @@
   }
 }
 
-.h4 {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 25px;
-  line-height: 120%;
-  font-family: var(--font-primary);
-
+.h2 {
   @include tablet {
-    font-size: 40px;
   }
 
   @include laptop {
-    font-size: 50px;
   }
 
   @include desktop {
-    font-size: 65px;
   }
 }
 
-.h5 {
+.h3 {
   font-style: normal;
   font-weight: 400;
-  font-size: 40px;
-  line-height: 130%;
-  font-family: var(--font-primary);
-
+  font-size: 24px;
+  line-height: 110%;
   @include tablet {
   }
 
+  @include laptop {
+  }
+
   @include desktop {
+    font-size: 50px;
+  }
+}
+
+.h4 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 100%; /* 21.6px */
+  letter-spacing: -0.4px;
+  @include tablet {
+  }
+
+  @include laptop {
+  }
+
+  @include desktop {
+    font-size: 40px;
   }
 }
 
 .p1 {
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 130%;
-  font-family: var(--font-primary);
-
+  font-size: 16px;
+  line-height: 130%; /* 20.8px */
+  letter-spacing: -0.32px;
   @include tablet {
-    font-size: 24px;
   }
 
   @include desktop {
-    font-size: 30px;
+    font-size: 24px;
   }
 }
 
@@ -115,97 +77,45 @@
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 150%; /* 21px */
-  font-family: var(--font-helvetica);
-  letter-spacing: 0.56px;
-  text-transform: uppercase;
+  line-height: 120%; /* 16.8px */
+  letter-spacing: -0.28px;
   @include tablet {
-    font-size: 16px;
-    letter-spacing: 0.64px;
   }
   @include laptop {
-    font-size: 14px;
-    letter-spacing: 0.56px;
   }
 
   @include desktop {
-    font-size: 16px;
-    letter-spacing: 0.64px;
+    font-size: 18px;
   }
 }
 
-.p3 {
+.p {
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 150%; /* 21px */
-  font-family: var(--font-helvetica);
-  letter-spacing: 0.56px;
-  text-transform: uppercase;
+  line-height: 100%; /* 16.8px */
+  letter-spacing: -0.28px;
   @include tablet {
-    font-size: 16px;
-    letter-spacing: 0.64px;
   }
   @include laptop {
-    font-size: 14px;
-    letter-spacing: 0.56px;
   }
 
   @include desktop {
-    font-size: 16px;
-    letter-spacing: 0.64px;
-  }
-}
-
-.p4 {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 150%; /* 18px */
-  font-family: var(--font-helvetica);
-  text-transform: uppercase;
-  @include tablet {
-    font-size: 14px;
-  }
-  @include laptop {
-    font-size: 12px;
-  }
-
-  @include desktop {
-    font-size: 14px;
-  }
-}
-
-.button {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 150%; /* 21px */
-  font-family: var(--font-helvetica);
-  letter-spacing: 0.28px;
-  text-transform: uppercase;
-  @include tablet {
-    font-size: 16px;
-    letter-spacing: 0.32px;
-  }
-  @include laptop {
-    font-size: 14px;
-    letter-spacing: 0.28px;
-  }
-
-  @include desktop {
-    font-size: 16px;
-    letter-spacing: 0.32px;
+    font-size: 18px;
   }
 }
 
 .color {
-  &-red {
-    color: var(--color-red);
+  &-white {
+    color: var(--white);
   }
 
-  &-milk {
-    color: var(--color-milk);
+  &-text {
+    color: var(--Text);
+  }
+
+  &-light-violet {
+    color: var(--Light-violet, #e5e1ff);
   }
 
   &-error {

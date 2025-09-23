@@ -10,7 +10,7 @@ import styles from './Email.module.scss';
 
 type Props = {
   className?: string;
-  color?: 'error' | 'milk' | 'red';
+  color?: 'error' | 'text' | 'white' | 'light-violet';
   email: string;
   type?: TextType;
   icon?: ReactNode;
@@ -18,23 +18,11 @@ type Props = {
 
 export const Email = ({ className, color, email, type, icon }: Props) => {
   return (
-    <>
-      <Responsive hideFrom='laptop'>
-        <a className={clsx(styles.wrapper, className)} href={`mailto:${email}`}>
-          <Text color={color} type={type}>
-            {email}
-          </Text>
-          {icon && icon}
-        </a>
-      </Responsive>
-      <Responsive showFrom='laptop'>
-        <Copy className={clsx(styles.wrapper, className)} textToCopy={email}>
-          <Text color={color} type={type}>
-            {email}
-          </Text>
-          {icon && icon}
-        </Copy>
-      </Responsive>
-    </>
+    <a className={clsx(styles.wrapper, className)} href={`mailto:${email}`}>
+      <Text color={color} type={type}>
+        {email}
+      </Text>
+      {icon && icon}
+    </a>
   );
 };

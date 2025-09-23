@@ -5,7 +5,7 @@ import { getMessages } from 'next-intl/server';
 
 import { payload } from '@/api';
 import { GlobalsProvider } from '@/contexts/GlobalsContext/GlobalsProvider';
-import { Helvetica, IvyPresto } from '@/utils/customFonts';
+import { PPMori } from '@/utils/customFonts';
 import { Layout } from '@/views/Layout';
 import type { Config } from '@monorepo/cms/src/payload-types';
 
@@ -23,9 +23,11 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: Config['locale'] };
 }>) {
-  const [header, footer] = await Promise.all([
+  const [header, footer, contacts, banner] = await Promise.all([
     payload.findGlobal({ slug: 'header' }),
     payload.findGlobal({ slug: 'footer' }),
+    payload.findGlobal({ slug: 'contacts' }),
+    payload.findGlobal({ slug: 'banner' }),
   ]);
 
   const messages = await getMessages();
@@ -34,9 +36,9 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={clsx(Helvetica.variable, IvyPresto.variable)}>
+      <body className={clsx(PPMori.variable)}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <GlobalsProvider footer={footer} header={header}>
+          <GlobalsProvider footer={footer} header={header} banner={banner} contacts={contacts}>
             <Layout>{children}</Layout>
           </GlobalsProvider>
         </NextIntlClientProvider>

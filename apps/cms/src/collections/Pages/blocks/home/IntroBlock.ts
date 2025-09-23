@@ -1,41 +1,69 @@
-// import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
 import type { Block } from 'payload';
 
-import { link } from '@/fields/link';
+import { FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
 
 export const IntroBlock: Block = {
   fields: [
-    // {
-    //   editor: lexicalEditor({
-    //     features: ({ rootFeatures }) => {
-    //       return [
-    //         ...rootFeatures,
-    //         FixedToolbarFeature(),
-    //         HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5'] }),
-    //       ];
-    //     },
-    //   }),
-    //   label: 'Title',
-    //   name: 'title',
-    //   type: 'richText',
-    // },
     {
-      label: 'Description',
+      label: 'Title',
       localized: true,
-      name: 'description',
+      name: 'title',
       required: true,
       type: 'textarea',
     },
     {
-      label: 'Background video (.mp4)',
+      admin: {
+        description: "To highlight in violet highlight the desired part of the text and press 'B'",
+      },
+      editor: lexicalEditor({
+        features: ({ rootFeatures }) => {
+          return [...rootFeatures, FixedToolbarFeature()];
+        },
+      }),
+      label: 'Description',
+      localized: true,
+      name: 'description',
+      type: 'richText',
+    },
+
+    {
+      label: 'Background video or image (.mp4)',
       name: 'bgVideo',
       relationTo: 'media',
       required: true,
       type: 'upload',
     },
-    link({
-      appearances: false,
-    }),
+    {
+      fields: [
+        {
+          fields: [
+            {
+              label: 'Title',
+              name: 'title',
+              required: true,
+              localized: true,
+              type: 'text',
+            },
+            {
+              label: 'Description',
+              name: 'description',
+              required: true,
+              localized: true,
+              type: 'text',
+            },
+          ],
+          type: 'row',
+        },
+      ],
+      label: 'Advantages',
+      labels: {
+        plural: 'Advantages',
+        singular: 'Advantage',
+      },
+      required: true,
+      name: 'advantagesList',
+      type: 'array',
+    },
   ],
   imageURL: '/admin-static/home-intro.jpg',
   interfaceName: 'IntroBlockFields',

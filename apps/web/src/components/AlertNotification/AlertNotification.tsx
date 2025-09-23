@@ -18,7 +18,7 @@ export const AlertNotification = ({ open, setOpen, text }: Props) => {
       <Toast.Provider swipeDirection='down'>
         <Toast.Root className={styles.ToastRoot} onOpenChange={setOpen} open={open}>
           <Toast.Title className={styles.ToastTitle}>
-            <Text color='milk' type='p3'>
+            <Text type='p2' color='light-violet'>
               {text}
             </Text>
           </Toast.Title>

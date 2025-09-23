@@ -135,7 +135,7 @@ export function serializeLexical({ nodes, textColor, textType = 'p1' }: Props): 
                   tabIndex={-1}
                   value={node?.value}
                 >
-                  <Text tag='p' type='h5'>
+                  <Text tag='p' type='h3'>
                     {serializedChildren}
                   </Text>
                 </li>
@@ -150,7 +150,7 @@ export function serializeLexical({ nodes, textColor, textType = 'p1' }: Props): 
           }
           case 'quote': {
             return (
-              <Text type='p3' key={index} color={textColor}>
+              <Text type='p2' key={index} color={textColor}>
                 {serializedChildren}
               </Text>
             );
